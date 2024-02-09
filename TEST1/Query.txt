@@ -1,0 +1,87 @@
+1) SELECT COUNT (*) as TotVerbali
+  FROM [dbo].[Verbale]
+
+
+
+2) SELECT v.IDAnagrafica, a.Cognome, a.Nome,count (*) as TotVerbali
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+Group by v.IDAnagrafica, a.Cognome, A.Nome
+
+
+
+
+3) SELECT v.IDViolazione, vio.Descrizione, count (*) as TotVerbali
+FROM [dbo].[Verbale] as v
+join dbo.Violazione as vio on vio.IDViolazione = v.IDViolazione
+Group by v.IDViolazione, vio.Descrizione
+
+
+
+4) SELECT v.IDAnagrafica, a.Cognome, a.Nome, sum (v.DecurtamentoPunti) as TotPunti
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+Group by v.IDAnagrafica, a.Cognome, a.Nome
+
+
+
+
+5) SELECT a.Cognome, a.Nome, v.DataViolazione, v.IndirizzoViolazione, v.Importo, v.DecurtamentoPunti, a.Città
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+where a.città like '%Palermo%' 
+
+
+
+
+6) SELECT a.Cognome, a.Nome, v.DataViolazione, a.Indirizzo, v.Importo, v.DecurtamentoPunti, 
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+where v.DataViolazione between '2024-02-01' and '2024-07-31'
+
+
+
+
+7) SELECT v.IDAnagrafica, a.Cognome, a.Nome, sum (v.Importo) as TotImporto
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+Group by v.IDAnagrafica, a.Cognome, a.Nome
+
+
+
+
+
+8) SELECT *
+  FROM [dbo].[Anagrafica]
+  where Città like '%Palermo%'
+
+
+
+
+9)  SELECT  DataViolazione, Importo, DecurtamentoPunti, 
+FROM [dbo].[Verbale] 
+where DataViolazione like '2024-03-20'
+
+
+
+
+10)  SELECT count(*), Nominativo_Agente
+  FROM [dbo].[Verbale]
+  group by Nominativo_Agente
+
+
+
+11) SELECT a.Cognome, a.Nome, v.DataViolazione, v.IndirizzoViolazione, v.Importo, v.DecurtamentoPunti, 
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+where v.DecurtamentoPunti > 5
+
+
+
+12) SELECT a.Cognome, a.Nome, v.DataViolazione, v.IndirizzoViolazione, v.Importo, v.DecurtamentoPunti, 
+FROM [dbo].[Verbale] as v
+join dbo.Anagrafica as a on a.IDAnagrafica = v.IDAnagrafica
+where v.Importo  > 400
+
+
+
